@@ -5,7 +5,7 @@ function App() {
 
   return (
     <div className='bg-gray-100 h-screen'>
-      <nav class="bg-white border-gray-200 ">
+      <nav class="bg-white border-gray-200 shadow-sm">
         <div class='max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-7 p-10 '>
           <a class="hidden md:block flex  items-center">
             <span class="self-center text-2xl font-semibold whitespace-nowrap uppercase ">logo</span>
@@ -24,11 +24,11 @@ function App() {
 
 
       <div>
-        <nav className='md:fixed md:top-0 md:left-0'>
+        <nav className='md:fixed md:top-0 md:left-0 md:w-1/6 shadow-md'>
           <div className="hidden md:block ">
             <div className="flex-col flex">
               <div className="flex bg-gray-100 h-screen overflow-x-hidden">
-                <div className="bg-white lg:flex md:w-60 md:flex-col hidden">
+                <div className="bg-white lg:flex md:w-full md:flex-col hidden">
                   <div className="flex-col pt-5 flex overflow-y-auto">
                     <div className="h-full flex-col justify-between px-4 flex">
                       <div className="space-y-4">
@@ -170,9 +170,12 @@ function App() {
             )}
           </Transition>
         </nav>
+        <div className='md:w-5/6 h-screen md:absolute md:right-0 bg-gray-100'>
         <div className='text-2xl self-center text-center items-center justify-center  '>
           hello world!
         </div>
+        </div>
+   
       </div>
     </div >
 
