@@ -3,7 +3,7 @@ import TopBar from "../components/TopBar";
 import Login from "./Login";
 import Create from "./Create";
 import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import deleteicon from "../images/deleteicon.png";
 import editicon from "../images/editicon.png";
 import TodosData from "../data/TodosData.json";
@@ -11,9 +11,20 @@ const Mainpage = (props) => {
   //const todos = TodosData;
   const [todos, setTodos] = useState(TodosData);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
+  const inputRef = useRef(null);
+
+  useLayoutEffect(() => {
+    console.log("selectedTodoId", selectedTodoId);
+    // Focus on the input field when selectedTodoId changes
+    if (selectedTodoId !== null && inputRef.current !== null) {
+      inputRef.current.focus();
+    }
+  }, [selectedTodoId]);
+
   const handleEdit = (todoId) => {
     // Set the selected todo for editing
     setSelectedTodoId(todoId);
+    //inputRef.current.focus();
   };
 
   const handleDelete = (todoId) => {
@@ -23,17 +34,18 @@ const Mainpage = (props) => {
   };
 
   const handleSaveEdit = (todoId, updatedContent) => {
-    // Find the index of the selected todo
     const index = todos.findIndex((todo) => todo.id === todoId);
-
-    // Update the todo list with the edited todo
     const updatedTodos = [...todos];
     updatedTodos[index].content = updatedContent;
-
     setTodos(updatedTodos);
-    setSelectedTodoId(null); // Clear the selected todo after editing
+    setSelectedTodoId(null);
   };
-
+  const handleInputChange = (value) => {
+    const index = todos.findIndex((todo) => todo.id === selectedTodoId);
+    const updatedTodos = [...todos];
+    updatedTodos[index].content = value;
+    setTodos(updatedTodos);
+  };
   return (
     <div>
       <TopBar />
@@ -73,16 +85,29 @@ const Mainpage = (props) => {
                             // Render your edit form or modal here
                             <div>
                               <input
-                                className=" shadow border rounded w-full py-1 px-1 text-base text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                                ref={inputRef}
+                                className="shadow border rounded w-full py-1 px-1 text-base text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                 type="text"
-                                value={todo.content}
+                                value={
+                                  todos.find((t) => t.id === selectedTodoId)
+                                    ?.content || ""
+                                }
                                 onChange={(e) =>
-                                  handleSaveEdit(todo.id, e.target.value)
+                                  handleInputChange(e.target.value)
+                                }
+                                onBlur={() =>
+                                  handleSaveEdit(
+                                    selectedTodoId,
+                                    inputRef.current.value
+                                  )
                                 }
                               />
+
                               <div className="  flex flex-col justify-center items-center text-center">
                                 <button
-                                  onClick={handleSaveEdit}
+                                  onClick={() =>
+                                    handleSaveEdit(todo.id, todo.content)
+                                  }
                                   className="text-base hover:bg-gray-400 rounded-md w-1/4"
                                 >
                                   Save
