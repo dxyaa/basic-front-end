@@ -15,20 +15,17 @@ const Mainpage = (props) => {
 
   useLayoutEffect(() => {
     console.log("selectedTodoId", selectedTodoId);
-    // Focus on the input field when selectedTodoId changes
     if (selectedTodoId !== null && inputRef.current !== null) {
       inputRef.current.focus();
     }
   }, [selectedTodoId]);
 
   const handleEdit = (todoId) => {
-    // Set the selected todo for editing
     setSelectedTodoId(todoId);
     //inputRef.current.focus();
   };
 
   const handleDelete = (todoId) => {
-    // Remove the todo with the given id
     const updatedTodos = todos.filter((todo) => todo.id !== todoId);
     setTodos(updatedTodos);
   };
@@ -82,7 +79,6 @@ const Mainpage = (props) => {
                             />
                           </a>
                           {selectedTodoId === todo.id && (
-                            // Render your edit form or modal here
                             <div>
                               <input
                                 ref={inputRef}
