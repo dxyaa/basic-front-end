@@ -1,6 +1,8 @@
 import { Transition } from "@headlessui/react";
 import React, { useState } from "react";
-
+import { Link } from "react-router-dom";
+import Upcoming from "../pages/Upcoming";
+import Completed from "../pages/Completed";
 function SideBar() {
   const [isOpen, setIsOpen] = useState(false);
   return (
@@ -23,21 +25,18 @@ function SideBar() {
                     </a>
                     <div className="uppercase font-bold"> tasks</div>
                     <div className=" bg-top bg-cover space-y-2">
-                      <a
+                      <Link
+                        to="/Upcoming"
                         href="#"
                         className="mt-10 font-medium text-lg items-center rounded-lg text-gray-900 px-4 py-2.5 flex
                             transition-all duration-200 hover:bg-gray-200 group cursor-pointer"
                       >
                         <span className="justify-center items-center flex">
-                          <span className="justify-center items-center flex">
-                            <span className="justify-center items-center flex">
-                              <span className="items-center justify-center flex">
-                                <img
-                                  className="flex-shrink-0 w-5 h-5 mr-5"
-                                  src="https://cdn-icons-png.flaticon.com/512/50/50621.png"
-                                ></img>
-                              </span>
-                            </span>
+                          <span className="items-center justify-center flex">
+                            <img
+                              className="flex-shrink-0 w-5 h-5 mr-5"
+                              src="https://cdn-icons-png.flaticon.com/512/50/50621.png"
+                            ></img>
                           </span>
                         </span>
                         <span>
@@ -48,22 +47,19 @@ function SideBar() {
                             </div>
                           </a>
                         </span>
-                      </a>
-                      <a
+                      </Link>
+                      <Link
+                        to="/Completed"
                         href="#"
                         className="font-medium text-lg items-center rounded-lg text-gray-900 px-4 py-2.5 flex
                             transition-all duration-200 hover:bg-gray-200 group cursor-pointer"
                       >
                         <span className="justify-center items-center flex">
-                          <span className="justify-center items-center flex">
-                            <span className="justify-center items-center flex">
-                              <span className="items-center justify-center flex">
-                                <img
-                                  className="flex-shrink-0 w-6 h-6 mr-4"
-                                  src="https://cdn.iconscout.com/icon/premium/png-256-thumb/bullet-point-3775803-3154146.png?f=webp"
-                                ></img>
-                              </span>
-                            </span>
+                          <span className="items-center justify-center flex">
+                            <img
+                              className="flex-shrink-0 w-6 h-6 mr-4"
+                              src="https://cdn.iconscout.com/icon/premium/png-256-thumb/bullet-point-3775803-3154146.png?f=webp"
+                            ></img>
                           </span>
                         </span>
                         <span>
@@ -74,22 +70,18 @@ function SideBar() {
                             </div>
                           </a>
                         </span>
-                      </a>
+                      </Link>
                       <a
                         href="#"
                         className="font-medium text-lg items-center rounded-lg text-gray-900 px-4 py-2.5 flex
                             transition-all duration-200 hover:bg-gray-200 group cursor-pointer"
                       >
                         <span className="justify-center items-center flex">
-                          <span className="justify-center items-center flex">
-                            <span className="justify-center items-center flex">
-                              <span className="items-center justify-center flex">
-                                <img
-                                  className="flex-shrink-0 w-7 h-7 mr-4"
-                                  src="https://cdn-icons-png.flaticon.com/512/4269/4269480.png"
-                                ></img>
-                              </span>
-                            </span>
+                          <span className="items-center justify-center flex">
+                            <img
+                              className="flex-shrink-0 w-7 h-7 mr-4"
+                              src="https://cdn-icons-png.flaticon.com/512/4269/4269480.png"
+                            ></img>
                           </span>
                         </span>
                         <span>Services</span>
@@ -102,15 +94,11 @@ function SideBar() {
                             transition-all duration-200  group cursor-pointer"
                   >
                     <span className="justify-center items-center flex">
-                      <span className="justify-center items-center flex">
-                        <span className="justify-center items-center flex">
-                          <span className="items-center justify-center flex">
-                            <img
-                              className="flex-shrink-0 w-6 h-5 mr-4"
-                              src="https://cdn-icons-png.flaticon.com/512/876/876779.png"
-                            ></img>
-                          </span>
-                        </span>
+                      <span className="items-center justify-center flex">
+                        <img
+                          className="flex-shrink-0 w-6 h-5 mr-4"
+                          src="https://cdn-icons-png.flaticon.com/512/876/876779.png"
+                        ></img>
                       </span>
                     </span>
                     <span>
@@ -164,7 +152,8 @@ function SideBar() {
               ref={ref}
               className=" space-y-1 sm:px-3 rounded-md w-1/2 ml-5 mt-4 mb-4  bg-blue-100 items-center flex justify-center items-center text-center flex-col"
             >
-              <a
+              <Link
+                to="/Upcoming"
                 href="#"
                 className="mt-10 font-medium text-lg items-center rounded-lg text-gray-900 px-4 py-2.5 flex
                             transition-all duration-200 hover:bg-gray-200 group cursor-pointer"
@@ -178,8 +167,9 @@ function SideBar() {
                   </span>
                 </span>
                 <span>Upcoming</span>
-              </a>
-              <a
+              </Link>
+              <Link
+                to="/Completed"
                 href="#"
                 className="font-medium text-lg items-center rounded-lg text-gray-900 px-4 py-2.5 flex
                             transition-all duration-200 hover:bg-gray-200 group cursor-pointer"
@@ -193,7 +183,7 @@ function SideBar() {
                   </span>
                 </span>
                 <span>Completed</span>
-              </a>
+              </Link>
               <a
                 href="#"
                 className="font-medium text-lg items-center rounded-lg text-gray-900 px-4 py-2.5 flex
