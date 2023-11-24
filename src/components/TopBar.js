@@ -4,7 +4,7 @@ import Login from "../pages/Login";
 function TopBar() {
   return (
     <nav class="bg-white border-gray-200 shadow-sm">
-      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-7 p-10 ">
+      <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto md:p-7 p-12 ">
         <a class="hidden md:block flex  items-center">
           <span class="self-center text-2xl font-semibold whitespace-nowrap uppercase ">
             logo

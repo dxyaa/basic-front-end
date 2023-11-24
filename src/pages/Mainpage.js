@@ -1,7 +1,7 @@
 import SideBar from "../components/SideBar";
 import TopBar from "../components/TopBar";
 import Login from "./Login";
-import Create from "./Create";
+
 import { Link } from "react-router-dom";
 import { useEffect, useState, useRef, useLayoutEffect } from "react";
 import deleteicon from "../images/deleteicon.png";
@@ -11,8 +11,23 @@ const Mainpage = (props) => {
   //const todos = TodosData;
   const [todos, setTodos] = useState(TodosData);
   const [selectedTodoId, setSelectedTodoId] = useState(null);
+  const [newTodoContent, setNewTodoContent] = useState("");
   const inputRef = useRef(null);
 
+  const handleCreatePost = (content) => {
+    const newTodo = {
+      id: todos.length + 1,
+      content: content,
+    };
+    setTodos([...todos, newTodo]);
+  };
+
+  const handleCreateNewTodo = () => {
+    if (newTodoContent.trim() !== "") {
+      handleCreatePost(newTodoContent);
+      setNewTodoContent("");
+    }
+  };
   useLayoutEffect(() => {
     console.log("selectedTodoId", selectedTodoId);
     if (selectedTodoId !== null && inputRef.current !== null) {
@@ -63,7 +78,7 @@ const Mainpage = (props) => {
                             Todo {todo.id}
                           </p>
 
-                          <p className="text-sm  overflow-hidden text-ellipsis ">
+                          <p className="text-sm  overflow-hidden text-ellipsis whitespace:nowrap">
                             {todo.content}
                           </p>
                         </div>
@@ -99,7 +114,7 @@ const Mainpage = (props) => {
                                 }
                               />
 
-                              <div className="  flex flex-col justify-center items-center text-center">
+                              <div className=" mt-2 flex flex-col justify-center items-center text-center">
                                 <button
                                   onClick={() =>
                                     handleSaveEdit(todo.id, todo.content)
@@ -107,12 +122,6 @@ const Mainpage = (props) => {
                                   className="text-base hover:bg-gray-400 rounded-md w-1/4"
                                 >
                                   Save
-                                </button>
-                                <button
-                                  onClick={() => setSelectedTodoId(null)}
-                                  className="text-base hover:bg-gray-400 rounded-md w-1/4 "
-                                >
-                                  Cancel
                                 </button>
                               </div>
                             </div>
@@ -136,15 +145,25 @@ const Mainpage = (props) => {
               })}
 
               <div className="lg:w-1/3 w-1/2 px-4 py-4">
-                <Link to="/Create">
-                  <a className="bg-gray-300 h-40 flex flex-col items-center justify-center rounded-md hover:bg-gray-200">
-                    <img
-                      src="https://static.thenounproject.com/png/2310577-200.png"
-                      className="h-8 w-8"
-                      id="create_icon"
-                    ></img>
+                <div>
+                  <a className="bg-gray-300 h-40  flex flex-col items-center justify-center rounded-md ">
+                    <div>
+                      <input
+                        type="text"
+                        className="shadow border rounded-full w-full py-2 px-4 text-base text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                        placeholder="Enter new todo..."
+                        value={newTodoContent}
+                        onChange={(e) => setNewTodoContent(e.target.value)}
+                      />
+                      <button
+                        onClick={handleCreateNewTodo}
+                        className="text-base bg-black px-2 py-1 font-medium w-1/3 text-white whitespace-no-wrap border-2 mt-2 border-transparent rounded-full shadow-sm hover:bg-transparent hover:text-black hover:border-black "
+                      >
+                        Create
+                      </button>
+                    </div>
                   </a>
-                </Link>
+                </div>
               </div>
             </div>
           </div>
